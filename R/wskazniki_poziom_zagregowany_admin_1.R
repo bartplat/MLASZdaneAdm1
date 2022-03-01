@@ -2,6 +2,7 @@
 #' @description Funkcja przechowująca nazwę szkoły.
 #' @param x ramka danych pośrednich P4
 #' @return tekst
+#' @export
 dane_szkoly_ad1 = function(x) {
   stopifnot(is.data.frame(x))
 
@@ -17,6 +18,7 @@ dane_szkoly_ad1 = function(x) {
 #' @param x ramka danych pośrednich P4
 #' @return liczba
 #' @importFrom dplyr n_distinct
+#' @export
 l_abs_ad1 = function(x) {
   return(n_distinct(x))
 }
@@ -26,6 +28,7 @@ l_abs_ad1 = function(x) {
 #' @param x ramka danych pośrednich P4
 #' @return liczba
 #' @importFrom dplyr %>% filter .data n_distinct
+#' @export
 l_kobiet_ad1 = function(x) {
   x %>%
     filter(.data$PLEC %in% "K") %>%
@@ -39,6 +42,7 @@ l_kobiet_ad1 = function(x) {
 #' @param x ramka danych pośrednich P4
 #' @return lista
 #' @importFrom dplyr .data
+#' @export
 l_abs_zrodla_ad1 = function(x) {
   x %>%
     summarise(
@@ -59,6 +63,7 @@ l_abs_zrodla_ad1 = function(x) {
 #' @param x ramka danych pośrednich P4
 #' @return lista
 #' @importFrom dplyr %>% select mutate .data distinct
+#' @export
 formy_ad1 = function(x) {
   x %>%
     mutate(
@@ -93,6 +98,7 @@ formy_ad1 = function(x) {
 #' @param mies miesiąc, dla którego ma być policzony wskaźnik
 #' @return lista
 #' @importFrom dplyr %>% filter .data summarise n_distinct
+#' @export
 S2_mies_ad1 = function(x, raport, mies) {
   stopifnot(is.data.frame(x),
             raport %in% c(0, 1),
@@ -130,6 +136,7 @@ S2_mies_ad1 = function(x, raport, mies) {
 #' @param mies miesiąc, dla którego ma być policzony wskaźnik
 #' @return lista
 #' @importFrom dplyr %>% filter .data summarise n_distinct
+#' @export
 S3_mies_ad1 = function(x, raport, mies) {
   stopifnot(is.data.frame(x),
             raport %in% c(0, 1),
@@ -206,6 +213,7 @@ S3_mies_ad1 = function(x, raport, mies) {
 #' @param mies miesiąc, dla którego ma być policzony wskaźnik
 #' @return lista
 #' @importFrom dplyr %>% group_by .data as_tibble filter mutate select
+#' @export
 zawody_S3_ad1 = function(x, raport = 0, mies = 12) {
   stopifnot(is.data.frame(x),
             "NAZWA_ZAW" %in% names(x),
@@ -241,6 +249,7 @@ zawody_S3_ad1 = function(x, raport = 0, mies = 12) {
 #' @param mies miesiąc, dla którego ma być policzony wskaźnik
 #' @return lista
 #' @importFrom dplyr %>% filter .data summarise n_distinct
+#' @export
 E2_nauka_kontyn_ad1 = function(x, raport = 0, mies = 12) {
   stopifnot(is.data.frame(x),
             raport %in% c(0, 1),
@@ -275,6 +284,7 @@ E2_nauka_kontyn_ad1 = function(x, raport = 0, mies = 12) {
 #' @param x ramka danych pośrednich P4
 #' @return lista
 #' @importFrom dplyr %>% filter .data count mutate slice_max
+#' @export
 liczebnosc_branze_ucz_bs1_ad1 = function(x) {
   stopifnot(is.data.frame(x))
 
@@ -368,6 +378,7 @@ liczebnosc_branze_ucz_bs1_ad1 = function(x) {
 #' @return lista
 #' @importFrom dplyr %>% filter .data count mutate select left_join n_distinct
 #' slice_max
+#' @export
 liczebnosc_branze_bs1_ad1 = function(x, branza_kont_df, raport = 0, mies = 12) {
   stopifnot(is.data.frame(x),
             is.data.frame(branza_kont_df),
@@ -420,6 +431,7 @@ liczebnosc_branze_bs1_ad1 = function(x, branza_kont_df, raport = 0, mies = 12) {
 #' absolwentów uczących się czy nie uczących się
 #' @return lista
 #' @importFrom dplyr %>% .data filter count full_join mutate n_distinct between
+#' @export
 Z4_ods_prac_mies_ad1 = function(x, raport = 0, od = 9, do = 12, nauka) {
   stopifnot(is.data.frame(x),
             raport %in% c(0, 1),
@@ -520,6 +532,7 @@ Z4_ods_prac_mies_ad1 = function(x, raport = 0, od = 9, do = 12, nauka) {
 #' absolwentów uczących się czy nie uczących się
 #' @return lista
 #' @importFrom dplyr %>% filter .data summarise n_distinct
+#' @export
 Z8_formy_prac_mies_ad1 = function(x, raport = 0, mies = 12, nauka) {
   stopifnot(is.data.frame(x),
             raport %in% c(0, 1),
@@ -580,6 +593,7 @@ Z8_formy_prac_mies_ad1 = function(x, raport = 0, mies = 12, nauka) {
 #' @param mies miesiąc, dla którego ma być policzony wskaźnik
 #' @return lista
 #' @importFrom dplyr %>% filter summarise n_distinct
+#' @export
 Z9_kont_mlod_ad1 = function(x, raport = 0, mies = 9) {
   stopifnot(is.data.frame(x),
             raport %in% c(0, 1),
@@ -613,6 +627,7 @@ Z9_kont_mlod_ad1 = function(x, raport = 0, mies = 9) {
 #' absolwentów uczących się czy nie uczących się
 #' @return lista
 #' @importFrom dplyr %>% .data filter group_by summarise ungroup n_distinct
+#' @export
 W1_sr_doch_ad1 = function(x, raport = 0, od = 9, do = 12, nauka) {
   stopifnot(is.data.frame(x),
             raport %in% c(0, 1),
@@ -679,6 +694,7 @@ W1_sr_doch_ad1 = function(x, raport = 0, od = 9, do = 12, nauka) {
 #' @return lista
 #' @importFrom dplyr %>% filter group_by summarise ungroup
 #' n_distinct
+#' @export
 W3_sr_doch_uop_ad1 = function(x, raport = 0, od = 9, do = 12, nauka) {
   stopifnot(is.data.frame(x),
             raport %in% c(0, 1),
@@ -756,6 +772,7 @@ W3_sr_doch_uop_ad1 = function(x, raport = 0, od = 9, do = 12, nauka) {
 #' @return lista
 #' @importFrom dplyr %>% filter .data group_by summarise ungroup count mutate
 #' across
+#' @export
 B2_ods_bezrob_ad1 = function(x, raport = 0, od = 9, do = 12) {
   stopifnot(is.data.frame(x),
             raport %in% c(0, 1),
@@ -822,6 +839,7 @@ B2_ods_bezrob_ad1 = function(x, raport = 0, od = 9, do = 12) {
 #' @param do koniec okresu wyliczania wskaźnika wyrażony miesiącem
 #' @return lista
 #' @importFrom dplyr %>% filter .data group_by summarise ungroup count mutate
+#' @export
 N2_ods_biernosc_ad1 = function(x, raport = 0, od = 9, do = 12) {
   stopifnot(is.data.frame(x),
             raport %in% c(0, 1),
@@ -876,6 +894,7 @@ N2_ods_biernosc_ad1 = function(x, raport = 0, od = 9, do = 12) {
 #' @param x ramka danych pośrednich P4
 #' @return lista
 #' @importFrom dplyr %>% filter .data count mutate
+#' @export
 licz_zawody_ad1 = function(x) {
   stopifnot(is.data.frame(x))
 
@@ -910,6 +929,7 @@ licz_zawody_ad1 = function(x) {
 #' @return lista
 #' @importFrom dplyr %>% filter .data count mutate select left_join n_distinct
 #' slice_max
+#' @export
 liczebnosc_dziedziny_tech_ad1 = function(x, dziedzina_kont_df, raport = 0, mies = 12) {
   stopifnot(is.data.frame(x),
             is.data.frame(dziedzina_kont_df),
@@ -966,6 +986,7 @@ liczebnosc_dziedziny_tech_ad1 = function(x, dziedzina_kont_df, raport = 0, mies 
 #' @return lista
 #' @importFrom dplyr %>% filter .data count mutate select left_join n_distinct
 #' slice_max
+#' @export
 liczebnosc_dyscypliny_tech_ad1 = function(x, dyscyplina_kont_df, raport = 0, mies = 12) {
   stopifnot(is.data.frame(x),
             is.data.frame(dyscyplina_kont_df),

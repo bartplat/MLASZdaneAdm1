@@ -17,6 +17,7 @@ Imports:
     tidyr (>= 1.1.2),
     dplyr (>= 1.0.7),
     haven (>= 2.4.3)
+Remotes: bartplat/MLASZdane
 Suggests:
     knitr,
     rmarkdown
