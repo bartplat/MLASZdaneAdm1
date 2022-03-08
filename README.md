@@ -17,6 +17,8 @@ install.packages('devtools') # potrzebne tylko, gdy nie jest jeszcze zainstalowa
 devtools::install_github('bartplat/MLASZdaneAdm1', build_opts = c("--no-resave-data"))
 ```
 
+Pakiet `MLASZdaneAdm1` jest zależny od pakietu `MLASZdane`, ale nie ma potrzeby go dodatkowo instalować, ponieważ dzieje się to podczas instalacji pakietu `MLASZdaneAdm1`.
+
 Dokładnie w ten sam sposób można przeprowadzić aktualizację pakietu do najnowszej wersji.
 
 # Użycie
@@ -33,6 +35,7 @@ Dla każdego typu szkoły zbiór wskaźników zagregowanych liczony jest oddziel
 Zbiór wskaźników liczony jest z tabel pośrednich tworzonych za pomocą pakietu [`MLASdaneAdm`](https://github.com/tzoltak/MLASdaneAdm). W pierwszym kroku należy z tabel pośrednich odfiltrować obserwacje (przykład dla abolswentów branżowych szkół pierwszego stopnia z 2020 roku).
 
 ```r
+library(dplyr)
 p4 = p4 %>%
   filter(ROK_ABS %in% 2020,
          TYP_SZK %in% c("Branżowa szkoła I stopnia"))
@@ -64,6 +67,7 @@ grupy_bs1 = p4 %>%
 Ostatnim krokiem, mając już odpowiednio okrojone tabele pośrednie oraz ramkę danych z definicja grup odniesienia, jest wygenerowanie wskaźników na danym poziomie agregacji.
 
 ```r
+library(MLASZdaneAdm1)
 wskazniki_bs1 = agreguj_bs1_admin_1(p2, p3, p4, grupy_bs1, 0, 2021)
 
 szk = wskazniki_bs1$grupy
