@@ -710,12 +710,12 @@ W3_sr_doch_uop_ad1 = function(x, raport = 0, od = 9, do = 12, nauka) {
 
   if (nauka) {
     x %>%
-      filter((.data$NAUKA_SZK_ABS %in% 0 | .data$NAUKA_SZK_ABS %in% 1) & !is.na(.data$WYNAGRODZENIE) & !is.na(.data$POWIAT_SR_WYNAGRODZENIE),
-             .data$WYNAGRODZENIE > 0,
+      filter((.data$NAUKA_SZK_ABS %in% 0 | .data$NAUKA_SZK_ABS %in% 1) & !is.na(.data$WYNAGRODZENIE_UOP) & !is.na(.data$POWIAT_SR_WYNAGRODZENIE),
+             .data$WYNAGRODZENIE_UOP > 0,
              .data$POWIAT_SR_WYNAGRODZENIE > 0) %>%
       group_by(.data$ID_ABS, .data$OKRES) %>%
       summarise(
-        rel_sred_ind_mies = .data$WYNAGRODZENIE / .data$POWIAT_SR_WYNAGRODZENIE
+        rel_sred_ind_mies = .data$WYNAGRODZENIE_UOP / .data$POWIAT_SR_WYNAGRODZENIE
       ) %>%
       ungroup() %>%
       group_by(.data$ID_ABS) %>%
@@ -735,12 +735,12 @@ W3_sr_doch_uop_ad1 = function(x, raport = 0, od = 9, do = 12, nauka) {
       return()
   } else {
     x %>%
-      filter(.data$NAUKA2 %in% 0 & !is.na(.data$WYNAGRODZENIE) & !is.na(.data$POWIAT_SR_WYNAGRODZENIE),
-             .data$WYNAGRODZENIE > 0,
+      filter(.data$NAUKA2 %in% 0 & !is.na(.data$WYNAGRODZENIE_UOP) & !is.na(.data$POWIAT_SR_WYNAGRODZENIE),
+             .data$WYNAGRODZENIE_UOP > 0,
              .data$POWIAT_SR_WYNAGRODZENIE > 0) %>%
       group_by(.data$ID_ABS, .data$OKRES) %>%
       summarise(
-        rel_sred_ind_mies = .data$WYNAGRODZENIE / .data$POWIAT_SR_WYNAGRODZENIE
+        rel_sred_ind_mies = .data$WYNAGRODZENIE_UOP / .data$POWIAT_SR_WYNAGRODZENIE
       ) %>%
       ungroup() %>%
       group_by(.data$ID_ABS) %>%
